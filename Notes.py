@@ -28,13 +28,15 @@ print("What is your name?")
 
 name = input(">_ ")
 
+print("Servers are shutting in 10 minutes do to error.")
+
 print("Hello %s," % name)
 
 age = input("How are old are you?")
 
 print("%s?! That's old really old. You belong in a retirement home.")
 
-
+print("Alejandro Gutierrez")
 
 
 
