@@ -1,42 +1,99 @@
-print("Hello world!")
+# print("Hello world!")
+#
+# #Alejandro Gutierrez
+#
+# a = 7
+# b = 5
+# c = 9
+#
+# print(a + b)
+#
+# print(c * b - a)
+#
+# print(c ** a / b)
+#
+# print(13 % 12)
+#
+# # the "%" sign is a modulus. It finds the reminder.
+#
+# car_name = "The Wiebe Moble"
+# car_type = "BMW"
+# car_cylinders = 8
+# car_mpg = 5000.9
+#
+# print("I have a car called %s. It's pretty nice." % car_name)
+# print("I have a car called %s. It's a %s." % (car_name, car_type)) # watch the order
+#
+# print("What is your name?")
+#
+# name = input(">_ ")
+#
+# print("Hello %s," % name)
+#
+# age = input("How are old are you?")
+#
+# print("%s?! That's old really old. You belong in a retirement home.")
 
-#Alejandro Gutierrez
+#Functions
 
-a = 7
-b = 5
-c = 9
 
-print(a + b)
+def print_hw():
+    print("Hello World.") #Tab = 4 spaces
+    print("Enjoy the day.")
 
-print(c * b - a)
 
-print(c ** a / b)
+print_hw()
 
-print(13 % 12)
 
-# the "%" sign is a modulus. It finds the reminder.
+def say_hi(name): # Name is a "parameter"
+    print("Hello %s." % name)
+    print("Coding is great!")
 
-car_name = "The Wiebe Moble"
-car_type = "BMW"
-car_cylinders = 8
-car_mpg = 5000.9
 
-print("I have a car called %s. It's pretty nice." % car_name)
-print("I have a car called %s. It's a %s." % (car_name, car_type)) # watch the order
+say_hi("Alejandro")
 
-print("What is your name?")
 
-name = input(">_ ")
+def print_age(name, age):
+    print("%s is %d years old" % (name, age))
+    age += 1 # age = age + 1
+    print("Next year, %s will be %d years old" % (name, age))
 
-print("Servers are shutting in 10 minutes do to error.")
 
-print("Hello %s," % name)
+print_age("Alejandro", 14)
 
-age = input("How are old are you?")
 
-print("%s?! That's old really old. You belong in a retirement home.")
+def algebra_hw(x):
+    return x**3 + 4*x**2 + 7* x - 4
 
-print("Alejandro Gutierrez")
+
+print(algebra_hw(3))
+print(algebra_hw(4))
+print(algebra_hw(5))
+print(algebra_hw(6))
+print(algebra_hw(7))
+print(algebra_hw(8))
+print(algebra_hw(9))
+print(algebra_hw(10))
+
+# if statements
+
+
+
+def grade_calc(percentage):
+    if percentage >= 90:
+        return "A"
+    elif percentage >= 80: # else if
+        return "B"
+    elif percentage >= 70:
+        return "C"
+    elif percentage >= 60:
+        return "D"
+    else:
+        return "F"
+
+
+
+
 
 
 
