@@ -37,79 +37,81 @@
 #Functions
 
 
-def print_hw():
-    print("Hello World.") #Tab = 4 spaces
-    print("Enjoy the day.")
+# def print_hw():
+#     print("Hello World.") #Tab = 4 spaces
+#     print("Enjoy the day.")
+#
+#
+# print_hw()
+#
+#
+# def say_hi(name): # Name is a "parameter"
+#     print("Hello %s." % name)
+#     print("Coding is great!")
+#
+#
+# say_hi("Alejandro")
+#
+#
+# def print_age(name, age):
+#     print("%s is %d years old" % (name, age))
+#     age += 1 # age = age + 1
+#     print("Next year, %s will be %d years old" % (name, age))
+#
+#
+# print_age("Alejandro", 14)
+#
+#
+# def algebra_hw(x):
+#     return x**3 + 4*x**2 + 7* x - 4
+#
+#
+# print(algebra_hw(3))
+# print(algebra_hw(4))
+# print(algebra_hw(5))
+# print(algebra_hw(6))
+# print(algebra_hw(7))
+# print(algebra_hw(8))
+# print(algebra_hw(9))
+# print(algebra_hw(10))
+#
+# # if statements
+#
+#
+#
+# def grade_calc(percentage):
+#     if percentage >= 90:
+#         return "A"
+#     elif percentage >= 80: # else if
+#         return "B"
+#     elif percentage >= 70:
+#         return "C"
+#     elif percentage >= 60:
+#         return "D"
+#     else:
+#         return "F"
 
 
-print_hw()
+def happy_bday(name):
+    print("Happy Birthday To You" + ',')
+    print("Happy Birthday To You" + ',')
+    print("Happy Birthday Dear", name + ',')
+    print("Happy Birthday To You" + '.')
 
 
-def say_hi(name): # Name is a "parameter"
-    print("Hello %s." % name)
-    print("Coding is great!")
+happy_bday("Alejandro")
+
+# Loops
+
+for num in range(101) :
+    print(num)
 
 
-say_hi("Alejandro")
+a = 1
+print(a)
+a +=1
 
-
-def print_age(name, age):
-    print("%s is %d years old" % (name, age))
-    age += 1 # age = age + 1
-    print("Next year, %s will be %d years old" % (name, age))
-
-
-print_age("Alejandro", 14)
-
-
-def algebra_hw(x):
-    return x**3 + 4*x**2 + 7* x - 4
-
-
-print(algebra_hw(3))
-print(algebra_hw(4))
-print(algebra_hw(5))
-print(algebra_hw(6))
-print(algebra_hw(7))
-print(algebra_hw(8))
-print(algebra_hw(9))
-print(algebra_hw(10))
-
-# if statements
-
-
-
-def grade_calc(percentage):
-    if percentage >= 90:
-        return "A"
-    elif percentage >= 80: # else if
-        return "B"
-    elif percentage >= 70:
-        return "C"
-    elif percentage >= 60:
-        return "D"
-    else:
-        return "F"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import random
 
 
 
