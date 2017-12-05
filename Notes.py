@@ -79,57 +79,52 @@
 #
 #
 #
-# def grade_calc(percentage):
-#     if percentage >= 90:
-#         return "A"
-#     elif percentage >= 80: # else if
-#         return "B"
-#     elif percentage >= 70:
-#         return "C"
-#     elif percentage >= 60:
-#         return "D"
-#     else:
-#         return "F"
+
+def grade_calc(percentage):
+    if percentage >= 90:
+        return "A"
+    elif percentage >= 80: # else if
+        return "B"
+    elif percentage >= 70:
+        return "C"
+    elif percentage >= 60:
+        return "D"
+    else:
+        return "F"
 
 
-def happy_bday(name):
-    print("Happy Birthday To You" + ',')
-    print("Happy Birthday To You" + ',')
-    print("Happy Birthday Dear", name + ',')
-    print("Happy Birthday To You" + '.')
-
-
-happy_bday("Alejandro")
+print(grade_calc(98))
+#
+# def happy_bday(name):
+#     print("Happy Birthday To You" + ',')
+#     print("Happy Birthday To You" + ',')
+#     print("Happy Birthday Dear", name + ',')
+#     print("Happy Birthday To You" + '.')
+#
+#
+# happy_bday("Alejandro")
 
 # Loops
 
-for num in range(101) :
-    print(num)
-
-
-a = 1
-print(a)
-a +=1
+# for num in range(101) :
+#     print(num)
+#
+#
+# a = 1
+# print(a)
+# a +=1
 
 import random
 
+# REcasting
+# c = '1'
+# print(c == 1) # we have a string and an intger
+# print(int(c) == 1 )
+# print(c == str(1))
 
 
+# Comparisons
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# print(1 == 1) #Use a double equal sign
+# print(1 != 2) #! isn't equal to 2
+# print(not False) #! is the "not" operator
