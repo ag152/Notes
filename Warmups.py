@@ -27,5 +27,6 @@
 #
 #
 # date(12, 8, 17)
-
-
+light = ["clock", "flags", "angle", "packs", "phone", "beats", "seats", "desks", "watch", "glass"]
+guess = list(light)
+print (guess)

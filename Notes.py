@@ -95,14 +95,14 @@ def grade_calc(percentage):
 
 print(grade_calc(98))
 #
-# def happy_bday(name):
-#     print("Happy Birthday To You" + ',')
-#     print("Happy Birthday To You" + ',')
-#     print("Happy Birthday Dear", name + ',')
-#     print("Happy Birthday To You" + '.')
-#
-#
-# happy_bday("Alejandro")
+def happy_bday(name):
+    print("Happy Birthday To You" + ',')
+    print("Happy Birthday To You" + ',')
+    print("Happy Birthday Dear", name + ',')
+    print("Happy Birthday To You" + '.')
+
+
+happy_bday("Alejandro")
 
 # Loops
 
@@ -128,3 +128,5 @@ import random
 # print(1 == 1) #Use a double equal sign
 # print(1 != 2) #! isn't equal to 2
 # print(not False) #! is the "not" operator
+
+"".join()
