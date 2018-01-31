@@ -8,7 +8,7 @@
 import random
 
 guessesTaken = 0
-number = random.randint(1, 20)
+number = random.randint(1, 5)
 
 global guess
 
