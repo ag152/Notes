@@ -80,29 +80,29 @@
 #
 #
 
-def grade_calc(percentage):
-    if percentage >= 90:
-        return "A"
-    elif percentage >= 80: # else if
-        return "B"
-    elif percentage >= 70:
-        return "C"
-    elif percentage >= 60:
-        return "D"
-    else:
-        return "F"
-
-
-print(grade_calc(98))
+# def grade_calc(percentage):
+#     if percentage >= 90:
+#         return "A"
+#     elif percentage >= 80: # else if
+#         return "B"
+#     elif percentage >= 70:
+#         return "C"
+#     elif percentage >= 60:
+#         return "D"
+#     else:
+#         return "F"
 #
-def happy_bday(name):
-    print("Happy Birthday To You" + ',')
-    print("Happy Birthday To You" + ',')
-    print("Happy Birthday Dear", name + ',')
-    print("Happy Birthday To You" + '.')
-
-
-happy_bday("Alejandro")
+#
+# print(grade_calc(98))
+# #
+# def happy_bday(name):
+#     print("Happy Birthday To You" + ',')
+#     print("Happy Birthday To You" + ',')
+#     print("Happy Birthday Dear", name + ',')
+#     print("Happy Birthday To You" + '.')
+#
+#
+# happy_bday("Alejandro")
 
 # Loops
 
@@ -129,4 +129,50 @@ import random
 # print(1 != 2) #! isn't equal to 2
 # print(not False) #! is the "not" operator
 
-"".join()
+# dictionary = {"name": 'Juan', 'age': 23, 'height': 6 * 12 + 2}
+#
+# print(dictionary["name"])
+# print(dictionary['age'])
+# print(dictionary['height'])
+# dictionary['profession'] = 'telemarketer'
+# quit(code=0)
+# large_dictionary= {
+#     'CA': 'California',
+#     'AZ': 'Arizona',
+#     'NY': 'New York'
+# }
+#
+# # print(large_dictionary['NY'])
+#
+# larger_dictionary= {
+#     'CA': ['Fresno', 'Bakersfield', 'San Jose'],
+#     'AZ': ['Phoenix', 'Tuson'],
+#     'NY': ['New York City', 'Brooklyn']
+# }
+# print(larger_dictionary['AZ'][1])
+
+# largest_dictionary = (
+#     'CA':(
+#          'NAME': 'California'
+#          'POPULATION': 392500000
+
+# }
+#
+#
+# print(dictionary)
+# )
+#
+    #     (*-*)
+    #    /--|--\
+    #   /   |   \
+    # ($)   |   ($)
+    #      / \
+    #
+    #
+    #
+    #
+    #      (*-*)
+    # -------|-------
+    #        |
+    #        |
+    #       / \
