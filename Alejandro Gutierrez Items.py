@@ -3,7 +3,7 @@ class Item(object):
         self.description = description
 
 
-class Weapon(item):
+class Weapon(Item):
     def __int__(self, description, damage):
         super(weapon, self).__int__(damage, description)
 
@@ -52,7 +52,7 @@ class Brickward(Melee):
             description = ('It is just a giant brick on a titanium rod.')
 
 
-class Potion(item):
+class Potion(Item):
     def __int__(self, description, heal):
         super(heal, self).__int__(description, heal)
         description = 'It is a small teal vial that has a red plus sign'
@@ -61,7 +61,7 @@ class Potion(item):
         hp += 100
 
 
-class Gascan(item):
+class Gascan(Item):
     def __int__(self, description):
         super(Gascan, self).__int__(description)
         description = 'It is a gas can and there is only bit gas left in it'

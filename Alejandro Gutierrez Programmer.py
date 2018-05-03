@@ -26,4 +26,4 @@ class Programmer(Employee):
         print("%s they started coding their project." % self.name)
 
 
-Programmer(name = "Bob", age = 29)
+Programmer("Bob", 29, 'black shirt', 'green glasses')

@@ -6,7 +6,6 @@ class Vechicle(object):
         self.max_speed = speed
         self.passengers = passengers
 
-
     def move(self):
         print("You move forward.")
 
@@ -16,9 +15,8 @@ class Vechicle(object):
 
 class Car(Vechicle):
     def __int__(self,  material, seat, speed, passengers, windows):
-        super(Car, self).__int__('engine',  material, seat, speed, passengers)
+        super(Car, self).__int__('engine', material, seat, speed, passengers)
         self.windows = windows
-
 
     def roll_down_windows(self):
         print("You roll the windows down")
@@ -27,7 +25,7 @@ class Car(Vechicle):
         print("You turn the key and the engine starts.")
 
 
-test_car = Car('Aluminum', 'Drver side', 140, 2, True)
+test_car = Car('Aluminum', 'Driver side', 140, 2, True)
 test_car.change_direction()
 
 
@@ -39,7 +37,7 @@ class KeylessCar(Car):
         print("You push the button and the car turns on")
 
 
-cool_car = KeylessCar('Aluminum', 'Drver side', 140, 2, True)
+cool_car = KeylessCar('Aluminum', 'Driver side', 140, 2, True)
 cool_car.turn_on()
 
 
