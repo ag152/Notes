@@ -146,7 +146,7 @@ living_room = Room("Living Room",
                    'northofhouse', 'kitchen', 'basement', None, None, None, Flashlight)
 basement = Room("Basement",
                 'There is a bunch of boxes, laundry and dryer machine.',
-                None, 'workshop', None, 'livingroom', None, None, Potion)
+                None, 'workshop', 'livingroom', None, None, None, Potion)
 workshop = Room("Work Shop",
                 'There is a bunch of power tools and scrap metal, but nothing too important.',
                 'Basement', None, 'eastpassage', None, None, None, Brickward)
@@ -171,9 +171,9 @@ shed = Room('Shed',
 forest2 = Room('Forest',
                'It seems a like a forest that leads two ways.',
                'shed', None, 'forest', 'deepforest', None, None, None)
-deepforest = ('Deep Forest',
-              'This the deep part of the forest to be a building but blocked by fallen tress.',
-              None, None, 'forest2', None, None, None)
+deepforest = Room('Deep Forest',
+                  'There is a building but it is completely cut by fallen trees.',
+                  None, None,'forest2', None, None, None, None)
 forest = Room('Forest',
               'It seems its the beginning of the woods.',
               None, None, 'paths', 'forest2', None, None, None)
@@ -215,12 +215,13 @@ emptyroom = Room('Empty Room',
                  'There is just a ladder.',
                  None, None, 'eastpassage', None, 'insideofabandonedwarehouse', None, None)
 insideofabandonedwarehouse = Room('Inside of abandoned warehouse',
-                                  'This is the warehouse i could not get to',
+                                  'This is the warehouse I could not get to.',
                                   None, None, None, None, None, 'emptyroom', Gascan)
 livingroom = Room('Living Room',
                   'It is a nice living and there is a opened door',
-                  None, 'kitchen', )
-
+                  None, 'kitchen', None, 'basement', None, None, None)
+westway = Room('Grass path',
+               'It is a small grass path')
 current_node = northofhouse
 directions = ['north', 'south', 'east', 'west', 'up', 'down']
 short_directions = ['n', 's', 'e', 'w', 'u', 'd']
