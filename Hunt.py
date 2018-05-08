@@ -12,7 +12,7 @@ class Character(object):
         print("What is your? Hello %s." % name)
 
     def hp(self):
-        hp = 2000
+        hp = 20000
         if hp == 0:
             print('You died')
 
@@ -28,25 +28,26 @@ class Item(object):
 
 
 class Weapon(Item):
-    def __int__(self, description, damage, ):
-        super(Weapon, self).__int__(damage, description)
-
+    def __int__(self, description, damage, name ):
+        super(Weapon, self).__int__(description, 0, name)
+        self.damage = damage
+        self.name = name
 
 class Melee(Weapon):
-    def __int__(self, description, damage):
-        super(Melee, self).__int__(description, damage, 'Sword of the Great One', 'Saw Clever', 'Brickward',)
+    def __int__(self, description, damage, name):
+        super(Melee, self).__int__(description, 0, name)
 
 
 class Ranged(Weapon):
-    def __int__(self, description, damage):
-        super(Ranged, self).__int__('Pistol', description, damage)
+    def __int__(self, description, damage, name):
+        super(Ranged, self).__int__(Pistol, description, 0)
+        self.Pistol = Pistol
 
 
 class Pistol(Ranged):
-    def __int__(self, description, damage):
-        super(Pistol, self).__int__(description, damage)
-        description = 'It seems it only has 30 bullets'
-        damage = 140
+    def __int__(self, description, damage, name):
+        super(Pistol, self).__int__('It is a 1911 pistol from ww2 and it is still in good condition.'
+                                    ' and it has 30 bullets per clip.', 140, '1911')
         ammo = 30
 
     def shoot(self):
@@ -106,6 +107,13 @@ class Battery(Item):
         description = 'It is small battery.'
 
 
+class Ring(Weapon):
+        def __int__(self, description, damage):
+            super(Ring, self).__int__(description, damage)
+            description = 'It seems like a normal ring.'
+            damage = 10000000
+
+
 class Room(object):
     def __init__(self, name, description, north, south, west, east, up, down, item):
         self.name = name
@@ -119,8 +127,8 @@ class Room(object):
         self.item = item
     
     def move(self, direction):
-     global current_node
-     current_node = globals()[getattr(self, direction)]
+        global current_node
+        current_node = globals()[getattr(self, direction)]
 
 
 northofhouse = Room('North of House',
@@ -131,9 +139,9 @@ garage = Room("Garage",
               None, None, 'northofhouse', None, None, None, None)
 westofhouse = Room("West of House",
                    "You are west of the house and there something on the floor",
-                   None, 'southofhouse', None, 'northofhouse', None, None, Sawclever)
+                   None, 'southofhouse', 'westway', 'northofhouse', None, None, Sawclever)
 southofhouse = Room("South of House",
-                    "There is a window that can be opened and there is a path going south.",
+                    "The back door is open but there is another path.",
                     'westofhouse', 'paths', 'dinerroom', None, None, None, None)
 dinerroom = Room("Dining Room",
                  "You are in an old dinning room and there are small piles of dust.",
@@ -160,7 +168,7 @@ westtunnel = Room('East Tunnel',
                   'It looks like a old tunnel system',
                   None, None, 'westpassage', 'maintunnel', None, None, None)
 maintunnel = Room('Main Tunnel',
-                  'There is machete on the old shelf and there is old rusty tools.',
+                  'There is old rusty tools.',
                   'northtunnel', None, 'westtunnel', 'easttunnel', 'insideofshed', None, None)
 insideofshed = Room('Inside of Shed',
                     'It is a small shed there is not much here.',
@@ -173,7 +181,7 @@ forest2 = Room('Forest',
                'shed', None, 'forest', 'deepforest', None, None, None)
 deepforest = Room('Deep Forest',
                   'There is a building but it is completely cut by fallen trees.',
-                  None, None,'forest2', None, None, None, None)
+                  None, None, 'forest2', None, None, None, None)
 forest = Room('Forest',
               'It seems its the beginning of the woods.',
               None, None, 'paths', 'forest2', None, None, None)
@@ -196,8 +204,7 @@ endofriver = Room('End of the river',
                   'It ends here and I cannot going but there is a beast behind a boulder',
                   None, None, None, 'river2', None, None, Battery)
 Lab = Room('Lab',
-           'There is a panel here with three buttons the first is destroy mobs, the second is teleport to room'
-           'and the third one is a nuke.',
+           'It looks like they use to do experiments here and there is a sword on a pedestal.',
            None, None, None, None, 'cavern', None, Yeetsword)
 northtunnel = Room('North Tunnel',
                    'There something in the corner and I cannot',
@@ -209,7 +216,7 @@ eastpassage = Room('East Passage',
                    'Its a narrow passage.',
                    None, None, 'eastpassage2', 'emptyroom', None, None, None)
 easttunnel = Room('East Tunnel',
-                  'It looks like a old tunnel system',
+                  'It looks like a old tunnel system.',
                   None, None, 'maintunnel', 'eastpassage', None, None, None)
 emptyroom = Room('Empty Room',
                  'There is just a ladder.',
@@ -218,10 +225,14 @@ insideofabandonedwarehouse = Room('Inside of abandoned warehouse',
                                   'This is the warehouse I could not get to.',
                                   None, None, None, None, None, 'emptyroom', Gascan)
 livingroom = Room('Living Room',
-                  'It is a nice living and there is a opened door',
+                  'It is a nice living and there is a opened door.',
                   None, 'kitchen', None, 'basement', None, None, None)
 westway = Room('Grass path',
-               'It is a small grass path')
+               'It is a small grass path.',
+               None, None, 'westway2', 'westofhouse', None, None, None,)
+westway2 = Room('Grass Land',
+                'It is a nice open field with flowers.',
+                None, None, None, 'westway',None, None, Ring)
 current_node = northofhouse
 directions = ['north', 'south', 'east', 'west', 'up', 'down']
 short_directions = ['n', 's', 'e', 'w', 'u', 'd']
