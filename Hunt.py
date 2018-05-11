@@ -60,58 +60,47 @@ class Pistol(Ranged):
 
 
 class Sawclever(Melee):
-    def __int__(self, description, damage):
-        super(Sawclever, self).__int__(description, damage)
-        description = 'It has a rigged spikes.'
-        damage = 160
+    def __int__(self, description, damage, name):
+        super(Sawclever, self).__int__('It is a blade with rigged edges.', 260, 'Sawclever')
 
 
 class Yeetsword(Melee):
-    def __int__(self, description, damage):
-       super(Yeetsword, self).__int__(description, damage)
-    damage = 1000
-    description = 'A sword forged by the blood of a great one.'
+    def __int__(self, description, damage, name):
+       super(Yeetsword, self).__int__('It is a long blade made out of some kind of metal.', 1000, 'Yeetsword')
 
 
 class Brickward(Melee):
-        def __int__(self, description, damage):
-            super(Brickward, self).__int__(description, damage)
-            damage = 350
-            description = 'It is just a giant brick on a graphene rod.'
+        def __int__(self, description, damage, name):
+            super(Brickward, self).__int__('It is just a giant brick on a graphene rod', 450, 'Brickward')
 
 
 class Potion(Item):
     def __int__(self, description, heal):
-        super(Potion, self).__int__(description, heal)
-        description = 'It is a small teal vial that has a red plus sign'
+        super(Potion, self).__int__('It is a small teal vial that has a red plus sign.')
+        self.heal = heal
 
     def drink(self):
-        hp += 100
+        hp += 200
 
 
 class Gascan(Item):
     def __int__(self, description):
-        super(Gascan, self).__int__(description)
-        description = 'It is a gas can and there is only bit gas left in it'
+        super(Gascan, self).__int__('It is a gas can and there is only a bit of gas left.')
 
 
 class Flashlight(Item):
     def __int__(self, description):
-        super(Flashlight, self).__int__(description)
-        description = 'It is a small flashlight that uses one battery.'
+        super(Flashlight, self).__int__('It is a flashlight and it seems to run with one battery.')
 
 
 class Battery(Item):
     def __int__(self, description):
-        super(Battery, self).__int__(description)
-        description = 'It is small battery.'
+        super(Battery, self).__int__('It is a small battery.')
 
 
 class Ring(Weapon):
-        def __int__(self, description, damage):
-            super(Ring, self).__int__(description, damage)
-            description = 'It seems like a normal ring.'
-            damage = 10000000
+        def __int__(self, description, damage, name):
+            super(Ring, self).__int__('It is a custom black ring.', 1000000, 'Ring')
 
 
 class Room(object):
@@ -125,7 +114,7 @@ class Room(object):
         self.up = up
         self.down = down
         self.item = item
-    
+
     def move(self, direction):
         global current_node
         current_node = globals()[getattr(self, direction)]
@@ -157,14 +146,14 @@ basement = Room("Basement",
                 None, 'workshop', 'livingroom', None, None, None, Potion)
 workshop = Room("Work Shop",
                 'There is a bunch of power tools and scrap metal, but nothing too important.',
-                'Basement', None, 'eastpassage', None, None, None, Brickward)
-westpassage2 = Room('East Passage',
+                'Basement', None, 'westpassage', None, None, None, Brickward)
+westpassage2 = Room('West Passage',
                     'Its a narrow passage.',
                     None, None, 'westpassge', 'westtunnel', None, None, None)
-westpassage = Room('East Passage',
+westpassage = Room('West Passage',
                    'Its a narrow passage.',
                    None, None, 'workshop', 'westpassage2', None, None, None)
-westtunnel = Room('East Tunnel',
+westtunnel = Room('West Tunnel',
                   'It looks like a old tunnel system',
                   None, None, 'westpassage', 'maintunnel', None, None, None)
 maintunnel = Room('Main Tunnel',
@@ -204,7 +193,7 @@ endofriver = Room('End of the river',
                   'It ends here and I cannot going but there is a beast behind a boulder',
                   None, None, None, 'river2', None, None, Battery)
 Lab = Room('Lab',
-           'It looks like they use to do experiments here and there is a sword on a pedestal.',
+           'It looks like they use to do experiments here and there is a sword on a pedestal, but it is impos.',
            None, None, None, None, 'cavern', None, Yeetsword)
 northtunnel = Room('North Tunnel',
                    'There something in the corner and I cannot',
@@ -232,7 +221,7 @@ westway = Room('Grass path',
                None, None, 'westway2', 'westofhouse', None, None, None,)
 westway2 = Room('Grass Land',
                 'It is a nice open field with flowers.',
-                None, None, None, 'westway',None, None, Ring)
+                None, None, None, 'westway', None, None, Ring)
 current_node = northofhouse
 directions = ['north', 'south', 'east', 'west', 'up', 'down']
 short_directions = ['n', 's', 'e', 'w', 'u', 'd']
@@ -259,3 +248,4 @@ while True:
         print('You cannot go this way.')
     else:
         print('Command not recognized')
+
