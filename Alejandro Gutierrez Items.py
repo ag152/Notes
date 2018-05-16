@@ -4,25 +4,30 @@ class Item(object):
 
 
 class Weapon(Item):
-    def __int__(self, description, damage):
-        super(weapon, self).__int__(damage, description)
+    def __int__(self, description, damage, name):
+        super(Weapon, self).__int__(description, 0, name)
+        self.damage = damage
+        self.name = name
 
 
 class Melee(Weapon):
-    def __int__(self, description, damage):
-        super(melee, self).__int__('Sword of the Great One', 'Saw Clever', 'Brickward', description, damage)
+    def __int__(self, description, damage, name):
+        super(Melee, self).__int__(description, 0, name)
 
 
 class Ranged(Weapon):
-    def __int__(self, description, damage):
-        super(ranged, self).__int__('Pistol', description, damage)
+    def __int__(self, description, damage, name):
+        super(Ranged, self).__int__(Pistol, description, 0)
+        self.Pistol = Pistol
 
 
 class Pistol(Ranged):
-    def __int__(self, description, damage):
-        super(Pistol, self).__int__(description, damage)
-        description = 'It seems it only has 30 bullets'
-        damage = 140
+    def __int__(self, description, damage, name):
+        super(Pistol, self).__int__('It is a 1911 pistol from ww2 and it is still in good condition.'
+                                    ' and it has 30 bullets per clip.', 140, '1911')
+
+    def shoot(self):
+        shoot = input
         ammo = 30
         if input == shoot:
             ammo = - 1
@@ -32,36 +37,44 @@ class Pistol(Ranged):
 
 
 class Sawclever(Melee):
-    def __int__(self, description, damage):
-        super(sawclever, self).__int__(description, damage)
-        description = 'It has a rigged spikes.'
-        damage = 160
+    def __int__(self, description, damage, name):
+        super(Sawclever, self).__int__('It is a blade with rigged edges.', 260, 'Sawclever')
 
 
-class Softgo(Melee):
-    def __int__(self, description, damage):
-      super(sawclever, self).__int__(description, damage)
-      damage = 1000
-      description = 'A sword forged by the blood of a great one.'
+class Yeetsword(Melee):
+    def __int__(self, description, damage, name):
+         super(Yeetsword, self).__int__('It is a long blade made out of some kind of metal.', 1000, 'Yeetsword')
 
 
 class Brickward(Melee):
-        def __int__(self, description, damage):
-            super(sawclever, self).__int__(description, damage)
-            damage = 350
-            description = ('It is just a giant brick on a titanium rod.')
+        def __int__(self, description, damage, name):
+            super(Brickward, self).__int__('It is just a giant brick on a graphene rod', 450, 'Brickward')
 
 
 class Potion(Item):
     def __int__(self, description, heal):
-        super(heal, self).__int__(description, heal)
-        description = 'It is a small teal vial that has a red plus sign'
+        super(Potion, self).__int__('It is a small teal vial that has a red plus sign.')
+        self.heal = heal
 
     def drink(self):
-        hp += 100
+        hp += 200
 
 
 class Gascan(Item):
     def __int__(self, description):
-        super(Gascan, self).__int__(description)
-        description = 'It is a gas can and there is only bit gas left in it'
+        super(Gascan, self).__int__('It is a gas can and there is only a bit of gas left.')
+
+
+class Flashlight(Item):
+    def __int__(self, description):
+        super(Flashlight, self).__int__('It is a flashlight and it seems to run with one battery.')
+
+
+class Battery(Item):
+    def __int__(self, description):
+        super(Battery, self).__int__('It is a small battery.')
+
+
+class Ring(Weapon):
+        def __int__(self, description, damage, name):
+            super(Ring, self).__int__('It is a custom black ring.', 1000000, 'Ring')

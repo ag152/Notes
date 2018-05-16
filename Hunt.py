@@ -7,10 +7,6 @@ class Character(object):
         self.death = death
         self.name = name
 
-    def name(self):
-        name = input('>_')
-        print("What is your? Hello %s." % name)
-
     def hp(self):
         hp = 20000
         if hp == 0:
@@ -22,6 +18,11 @@ class Character(object):
         print("You turn into a frog and kermit suicide.")
 
 
+Player = (15000, 0, None, False, 'Bames Bond')
+Enemy = (27835, 265, None, False, 'Fiend')
+Enemy2 = (24654, 193, None, False, 'Goblin')
+Enemy3 = (43820, 321, None, False, '')
+
 class Item(object):
     def __int__(self, description):
         self.description = description
@@ -32,6 +33,7 @@ class Weapon(Item):
         super(Weapon, self).__int__(description, 0, name)
         self.damage = damage
         self.name = name
+
 
 class Melee(Weapon):
     def __int__(self, description, damage, name):
@@ -100,7 +102,7 @@ class Battery(Item):
 
 class Ring(Weapon):
         def __int__(self, description, damage, name):
-            super(Ring, self).__int__('It is a custom black ring.', 1000000, 'Ring')
+            super(Ring, self).__int__('It is a custom black ring.', 100000, 'Ring')
 
 
 class Room(object):
@@ -187,7 +189,7 @@ river2 = Room('River',
               'The river keeps getting narrow and there is a cavern',
               'cavern', None, 'endofriver', 'river', None, None, Potion)
 cavern = Room('Cavern',
-              'There a big guy with a medium bolder protecting a chest.',
+              'There a goblin guarding a chest.',
               None, 'river2', None, None, None, 'Lab', None)
 endofriver = Room('End of the river',
                   'It ends here and I cannot going but there is a beast behind a boulder',
@@ -211,7 +213,7 @@ emptyroom = Room('Empty Room',
                  'There is just a ladder.',
                  None, None, 'eastpassage', None, 'insideofabandonedwarehouse', None, None)
 insideofabandonedwarehouse = Room('Inside of abandoned warehouse',
-                                  'This is the warehouse I could not get to.',
+                                  'This is the warehouse I could not get to also there is a fiend here.',
                                   None, None, None, None, None, 'emptyroom', Gascan)
 livingroom = Room('Living Room',
                   'It is a nice living and there is a opened door.',
@@ -230,7 +232,9 @@ while True:
     # Room information
     print(current_node.name)
     print(current_node.description)
-
+    if current_node.item is not None:
+        for Item in current_node.item:
+            print(Item.name)
     command = input('>_').lower().strip()
 
     # Pre-processing
@@ -246,6 +250,13 @@ while True:
         current_node.move(command)
       except KeyError:
         print('You cannot go this way.')
+    elif 'suicide' in command:
+        print('You turned into a frog and kermit suicide.')
+        quit(0)
+    elif 'take' in command:
+        Player.inventory.append(current_node.item)
+        current_node.item = None
+        print('Taken')
     else:
         print('Command not recognized')
 
