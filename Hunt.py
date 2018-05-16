@@ -7,102 +7,91 @@ class Character(object):
         self.death = death
         self.name = name
 
-    def hp(self):
-        hp = 20000
-        if hp == 0:
-            print('You died')
-
-    def suicide(self):
-        hp =2000
-        hp -= 10000000
-        print("You turn into a frog and kermit suicide.")
-
 
 Player = (15000, 0, None, False, 'Bames Bond')
 Enemy = (27835, 265, None, False, 'Fiend')
 Enemy2 = (24654, 193, None, False, 'Goblin')
 Enemy3 = (43820, 321, None, False, '')
 
+
 class Item(object):
-    def __int__(self, description):
+    def __init__(self, description):
         self.description = description
 
 
 class Weapon(Item):
-    def __int__(self, description, damage, name ):
-        super(Weapon, self).__int__(description, 0, name)
+    def __init__(self, name, damage, description):
+        super(Weapon, self).__init__(description)
         self.damage = damage
         self.name = name
 
 
 class Melee(Weapon):
-    def __int__(self, description, damage, name):
-        super(Melee, self).__int__(description, 0, name)
+    def __init__(self, description, damage, name):
+        super(Melee, self).__init__(description, damage, name)
 
 
 class Ranged(Weapon):
-    def __int__(self, description, damage, name):
-        super(Ranged, self).__int__(Pistol, description, 0)
-        self.Pistol = Pistol
+    def __init__(self, name, damage, description):
+        super(Ranged, self).__init__("Pistol", damage, description)
 
 
 class Pistol(Ranged):
-    def __int__(self, description, damage, name):
-        super(Pistol, self).__int__('It is a 1911 pistol from ww2 and it is still in good condition.'
-                                    ' and it has 30 bullets per clip.', 140, '1911')
-        ammo = 30
+    def __init__(self, name, damage, description):
+        super(Pistol, self).__init__('1911', 140, 'It is a 1911 pistol from ww2 and it is still in good condition.'
+                                    ' and it has 30 bullets per clip.')
+        self.ammo = 30
 
     def shoot(self):
-        shoot = input
-        if input == shoot:
-            ammo =- 1
+        if self.ammo > 0:
+            self.ammo -= 1
             print('*gun shot sound*')
-        if ammo == 0:
+        else:
             print('I have no more ammo.')
 
 
 class Sawclever(Melee):
-    def __int__(self, description, damage, name):
-        super(Sawclever, self).__int__('It is a blade with rigged edges.', 260, 'Sawclever')
+    def __init__(self, name, damage, description):
+        super(Sawclever, self).__init__('Sawclever', 260, 'It is a blade with rigged edges.')
 
 
 class Yeetsword(Melee):
-    def __int__(self, description, damage, name):
-       super(Yeetsword, self).__int__('It is a long blade made out of some kind of metal.', 1000, 'Yeetsword')
+    def __init__(self, name, damage, description):
+       super(Yeetsword, self).__init__('Yeetsword', 1000, 'It is a long blade made out of some kind of metal.')
 
 
 class Brickward(Melee):
-        def __int__(self, description, damage, name):
-            super(Brickward, self).__int__('It is just a giant brick on a graphene rod', 450, 'Brickward')
+        def __init__(self, description, damage, name):
+            super(Brickward, self).__init__('Brickward', 450, 'It is just a giant brick on a graphene rod')
 
 
 class Potion(Item):
-    def __int__(self, description, heal):
-        super(Potion, self).__int__('It is a small teal vial that has a red plus sign.')
+    def __init__(self, description, heal):
+        super(Potion, self).__init__('It is a small teal vial that has a red plus sign.')
         self.heal = heal
 
     def drink(self):
-        hp += 200
+        return 200
 
 
 class Gascan(Item):
-    def __int__(self, description):
-        super(Gascan, self).__int__('It is a gas can and there is only a bit of gas left.')
+    def __init__(self, description):
+        super(Gascan, self).__init__('It is a gas can and there is only a bit of gas left.')
 
 
 class Flashlight(Item):
-    def __int__(self, description):
-        super(Flashlight, self).__int__('It is a flashlight and it seems to run with one battery.')
+    def __init__(self, description):
+        super(Flashlight, self).__init__('It is a flashlight and it seems to run with one battery.')
 
 
 class Battery(Item):
-    def __int__(self, description):
-        super(Battery, self).__int__('It is a small battery.')
+    def __init__(self, description):
+        super(Battery, self).__init__('It is a small battery.')
 
 
 class Ring(Weapon):
-        def __int__(self, description, damage, name):
-            super(Ring, self).__int__('It is a custom black ring.', 100000, 'Ring')
+        def __init__(self, name, damage, description):
+            super(Ring, self).__init__('Ring', 100000, 'It is a custom black ring.')
 
 
 class Room(object):
@@ -130,16 +119,16 @@ garage = Room("Garage",
               None, None, 'northofhouse', None, None, None, None)
 westofhouse = Room("West of House",
                    "You are west of the house and there something on the floor",
-                   None, 'southofhouse', 'westway', 'northofhouse', None, None, Sawclever)
+                   None, 'southofhouse', 'westway', 'northofhouse', None, None, [Sawclever])
 southofhouse = Room("South of House",
                     "The back door is open but there is another path.",
                     'westofhouse', 'paths', 'dinerroom', None, None, None, None)
 dinerroom = Room("Dining Room",
                  "You are in an old dinning room and there are small piles of dust.",
-                 None, None, 'southofhouse', 'kitchen', None, None, Potion)
+                 None, None, 'southofhouse', 'kitchen', None, None, [Potion])
 kitchen = Room("Kitchen",
                "There is quite a lot of cooking materials.",
-               'livingroom', None, 'dinerroom', None, None, None, Potion)
+               'livingroom', None, 'dinerroom', None, None, None, [Potion])
 living_room = Room("Living Room",
                    "There is a note here, a flashlight and six batteries. there seems to be a another door.",
                    'northofhouse', 'kitchen', 'basement', None, None, None, Flashlight)
@@ -233,8 +222,8 @@ while True:
     print(current_node.name)
     print(current_node.description)
     if current_node.item is not None:
-        for Item in current_node.item:
-            print(Item.name)
+        for item in current_node.item:
+            print(item.name)
     command = input('>_').lower().strip()
 
     # Pre-processing
