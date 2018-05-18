@@ -1,11 +1,12 @@
 # Take damage, status affect, perform action, health, pick u p items, attack, death, move?, descripition, status effect
 class Character(object):
-    def ___int___(self, hp, attack, status, death, name):
+    def ___int___(self, hp, attack,inventory, status, death, name):
         self.hp = hp
         self.attack = attack
         self.status = status
         self.death = death
         self.name = name
+        self.inventory = []
 
 
 Player = (15000, 0, None, False, 'Bames Bond')
@@ -27,19 +28,19 @@ class Weapon(Item):
 
 
 class Melee(Weapon):
-    def __init__(self, description, damage, name):
-        super(Melee, self).__init__(description, damage, name)
+    def __init__(self, name, damage, description):
+        super(Melee, self).__init__(name, damage, description)
 
 
 class Ranged(Weapon):
     def __init__(self, name, damage, description):
-        super(Ranged, self).__init__("Pistol", damage, description)
+        super(Ranged, self).__init__(name, damage, description)
 
 
 class Pistol(Ranged):
     def __init__(self, name, damage, description):
         super(Pistol, self).__init__('1911', 140, 'It is a 1911 pistol from ww2 and it is still in good condition.'
-                                    ' and it has 30 bullets per clip.')
+                                                                                  ' and it has 30 bullets per clip.')
         self.ammo = 30
 
     def shoot(self):
@@ -53,7 +54,6 @@ class Pistol(Ranged):
 class Sawclever(Melee):
     def __init__(self, name, damage, description):
         super(Sawclever, self).__init__('Sawclever', 260, 'It is a blade with rigged edges.')
-
 
 class Yeetsword(Melee):
     def __init__(self, name, damage, description):
@@ -131,13 +131,13 @@ kitchen = Room("Kitchen",
                'livingroom', None, 'dinerroom', None, None, None, [Potion])
 living_room = Room("Living Room",
                    "There is a note here, a flashlight and six batteries. there seems to be a another door.",
-                   'northofhouse', 'kitchen', 'basement', None, None, None, Flashlight)
+                   'northofhouse', 'kitchen', 'basement', None, None, None, [Flashlight])
 basement = Room("Basement",
                 'There is a bunch of boxes, laundry and dryer machine.',
-                None, 'workshop', 'livingroom', None, None, None, Potion)
+                None, 'workshop', 'livingroom', None, None, None, [Potion])
 workshop = Room("Work Shop",
                 'There is a bunch of power tools and scrap metal, but nothing too important.',
-                'Basement', None, 'westpassage', None, None, None, Brickward)
+                'Basement', None, 'westpassage', None, None, None, [Brickward])
 westpassage2 = Room('West Passage',
                     'Its a narrow passage.',
                     None, None, 'westpassge', 'westtunnel', None, None, None)
@@ -167,43 +167,43 @@ forest = Room('Forest',
               None, None, 'paths', 'forest2', None, None, None)
 paths = Room('Paths',
              'It seems there are four rock pathways.',
-             'southofhouse', 'mountains', 'river', 'forest', None, None, Potion)
+             'southofhouse', 'mountains', 'river', 'forest', None, None, [Potion])
 mountains = Room('Mountains',
                  'It is a nice view of the city from here.',
-                 'paths', None, None, None, None, None, Potion)
+                 'paths', None, None, None, None, None, [Potion])
 river = Room('River',
              'Its a that keeps going.',
-             None, None, 'river2', 'paths', None, None, Potion)
+             None, None, 'river2', 'paths', None, None, [Potion])
 river2 = Room('River',
               'The river keeps getting narrow and there is a cavern',
-              'cavern', None, 'endofriver', 'river', None, None, Potion)
+              'cavern', None, 'endofriver', 'river', None, None, [Potion])
 cavern = Room('Cavern',
               'There a goblin guarding a chest.',
               None, 'river2', None, None, None, 'Lab', None)
 endofriver = Room('End of the river',
                   'It ends here and I cannot going but there is a beast behind a boulder',
-                  None, None, None, 'river2', None, None, Battery)
+                  None, None, None, 'river2', None, None, [Battery])
 Lab = Room('Lab',
            'It looks like they use to do experiments here and there is a sword on a pedestal, but it is impos.',
-           None, None, None, None, 'cavern', None, Yeetsword)
+           None, None, None, None, 'cavern', None, [Yeetsword])
 northtunnel = Room('North Tunnel',
                    'There something in the corner and I cannot',
-                   None, 'maintunnel', None, None, None, None, Potion)
+                   None, 'maintunnel', None, None, None, None, [Potion])
 eastpassage2 = Room('East Passage',
                     'Its a narrow passage.',
                     None, None, 'easttunnel', 'eastpassage', None, None, None)
 eastpassage = Room('East Passage',
                    'Its a narrow passage.',
-                   None, None, 'eastpassage2', 'emptyroom', None, None, None)
+                   None, None, 'eastpassage2', 'emptyroom', None, None, [Battery])
 easttunnel = Room('East Tunnel',
                   'It looks like a old tunnel system.',
-                  None, None, 'maintunnel', 'eastpassage', None, None, None)
+                  None, None, 'maintunnel', 'eastpassage', None, None, [Battery])
 emptyroom = Room('Empty Room',
                  'There is just a ladder.',
                  None, None, 'eastpassage', None, 'insideofabandonedwarehouse', None, None)
 insideofabandonedwarehouse = Room('Inside of abandoned warehouse',
                                   'This is the warehouse I could not get to also there is a fiend here.',
-                                  None, None, None, None, None, 'emptyroom', Gascan)
+                                  None, None, None, None, None, 'emptyroom', [Gascan])
 livingroom = Room('Living Room',
                   'It is a nice living and there is a opened door.',
                   None, 'kitchen', None, 'basement', None, None, None)
@@ -212,10 +212,12 @@ westway = Room('Grass path',
                None, None, 'westway2', 'westofhouse', None, None, None,)
 westway2 = Room('Grass Land',
                 'It is a nice open field with flowers.',
-                None, None, None, 'westway', None, None, Ring)
+                None, None, None, 'westway', None, None, [Ring])
 current_node = northofhouse
 directions = ['north', 'south', 'east', 'west', 'up', 'down']
 short_directions = ['n', 's', 'e', 'w', 'u', 'd']
+
+print(Player)
 
 while True:
     # Room information
@@ -223,7 +225,7 @@ while True:
     print(current_node.description)
     if current_node.item is not None:
         for item in current_node.item:
-            print(item.name)
+            print(item)
     command = input('>_').lower().strip()
 
     # Pre-processing
@@ -235,17 +237,17 @@ while True:
 
     # Process Command
     if command in directions:
-      try:
-        current_node.move(command)
-      except KeyError:
-        print('You cannot go this way.')
+            try:
+                current_node.move(command)
+            except KeyError:
+                print('You cannot go this way.')
     elif 'suicide' in command:
         print('You turned into a frog and kermit suicide.')
         quit(0)
     elif 'take' in command:
-        Player.inventory.append(current_node.item)
+        for item in current_node.item:
+         Player.inventory.append(item)
         current_node.item = None
         print('Taken')
     else:
         print('Command not recognized')
-
