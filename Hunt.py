@@ -1,18 +1,19 @@
 # Take damage, status affect, perform action, health, pick u p items, attack, death, move?, descripition, status effect
+inventory = []
+
 class Character(object):
-    def ___int___(self, hp, attack,inventory, status, death, name):
+    def ___int___(self, hp, attack, status, death, name):
         self.hp = hp
         self.attack = attack
         self.status = status
         self.death = death
         self.name = name
-        self.inventory = []
 
 
 Player = (15000, 0, None, False, 'Bames Bond')
 Enemy = (27835, 265, None, False, 'Fiend')
 Enemy2 = (24654, 193, None, False, 'Goblin')
-Enemy3 = (43820, 321, None, False, '')
+Enemy3 = (43820, 321, None, False, 'Beter')
 
 
 class Item(object):
@@ -53,16 +54,17 @@ class Pistol(Ranged):
 
 class Sawclever(Melee):
     def __init__(self, name, damage, description):
-        super(Sawclever, self).__init__('Sawclever', 260, 'It is a blade with rigged edges.')
+        super(Sawclever, self).__init__('Sawclever', 498, 'It is a blade with rigged edges.')
+
 
 class Yeetsword(Melee):
     def __init__(self, name, damage, description):
-       super(Yeetsword, self).__init__('Yeetsword', 1000, 'It is a long blade made out of some kind of metal.')
+       super(Yeetsword, self).__init__('Yeetsword', 2680, 'It is a long blade made out of some kind of metal.')
 
 
 class Brickward(Melee):
         def __init__(self, description, damage, name):
-            super(Brickward, self).__init__('Brickward', 450, 'It is just a giant brick on a graphene rod')
+            super(Brickward, self).__init__('Brickward', 567, 'It is just a giant brick on a graphene rod')
 
 
 class Potion(Item):
@@ -71,13 +73,15 @@ class Potion(Item):
         self.heal = heal
 
     def drink(self):
-        return 200
+        return 250
 
 
 class Gascan(Item):
     def __init__(self, description):
         super(Gascan, self).__init__('It is a gas can and there is only a bit of gas left.')
 
+    def use(self):
+        print('You poured the gas.')
 
 class Flashlight(Item):
     def __init__(self, description):
@@ -94,8 +98,10 @@ class Ring(Weapon):
             super(Ring, self).__init__('Ring', 100000, 'It is a custom black ring.')
 
 
+sawclever = Sawclever("sawclever", 23,"lol")
+
 class Room(object):
-    def __init__(self, name, description, north, south, west, east, up, down, item):
+    def __init__(self, name, description, north, south, west, east, up, down, item, characters):
         self.name = name
         self.description = description
         self.north = north
@@ -105,6 +111,7 @@ class Room(object):
         self.up = up
         self.down = down
         self.item = item
+        self.character = characters
 
     def move(self, direction):
         global current_node
@@ -113,13 +120,13 @@ class Room(object):
 
 northofhouse = Room('North of House',
                     'There nothing too interesting here.',
-                    None, None, 'westofhouse', 'garage', None, None, None)
+                    None, None, 'westofhouse', 'garage', None, None, None, )
 garage = Room("Garage",
               "there is a car with keys inside. Also there is a a fruit bowl.",
               None, None, 'northofhouse', None, None, None, None)
 westofhouse = Room("West of House",
                    "You are west of the house and there something on the floor",
-                   None, 'southofhouse', 'westway', 'northofhouse', None, None, [Sawclever])
+                   None, 'southofhouse', 'westway', 'northofhouse', None, None, [sawclever])
 southofhouse = Room("South of House",
                     "The back door is open but there is another path.",
                     'westofhouse', 'paths', 'dinerroom', None, None, None, None)
@@ -217,15 +224,13 @@ current_node = northofhouse
 directions = ['north', 'south', 'east', 'west', 'up', 'down']
 short_directions = ['n', 's', 'e', 'w', 'u', 'd']
 
-print(Player)
-
 while True:
     # Room information
     print(current_node.name)
     print(current_node.description)
     if current_node.item is not None:
         for item in current_node.item:
-            print(item)
+            print(item.name)
     command = input('>_').lower().strip()
 
     # Pre-processing
@@ -233,6 +238,7 @@ while True:
         pos = short_directions.index(command)
         command = directions[pos]
     elif command == 'quit':
+
         quit(0)
 
     # Process Command
@@ -246,8 +252,17 @@ while True:
         quit(0)
     elif 'take' in command:
         for item in current_node.item:
-         Player.inventory.append(item)
+            inventory.append(item)
         current_node.item = None
         print('Taken')
+    elif 'buddy' in command:
+        print('(*-*)\n'
+              ' /|\ \n'
+                '  |\n'
+              ' / \   ')
+    elif 'konami code' in command:
+        print('You summoned Exodia the Forbidden One'
+              ' and won the game.')
+        quit(0)
     else:
         print('Command not recognized')
